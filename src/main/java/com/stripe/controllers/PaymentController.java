@@ -27,6 +27,11 @@ public class PaymentController {
 	public String homepage() {
 		return "homepage";
 	}
+	
+	@GetMapping("/success")
+	public String success() {
+		return "success";
+	}
 
 	@GetMapping("/subscription")
 	public String subscriptionPage(Model model) {
@@ -95,7 +100,7 @@ public class PaymentController {
 			return new Response(false, "Stripe payment token is missing. please try again later.");
 		}
 
-		String chargeId = stripeService.createCharge(email, token, 999);// 9.99 usd
+		String chargeId = stripeService.createCharge(email, token, 99);// 9.99 usd
 
 		if (chargeId == null) {
 			return new Response(false, "An error accurred while trying to charge.");
